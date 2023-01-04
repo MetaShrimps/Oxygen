@@ -1,0 +1,252 @@
+--Cd script
+--Variables
+local player = game.Players.LocalPlayer
+local boxesTable = {
+"basic_case";
+"scene_case";
+"winter_case";
+"magical_case";
+"classic_case"
+}
+--Getgenv Variables
+getgenv().HitBoxReach = 0
+getgenv().ColorHitbox = BrickColor.new("Bright red")
+getgenv().HitBoxTransparency = 0.9
+
+getgenv().LinearReach = -1.5
+
+getgenv().Range = 0
+
+getgenv().AutoSwing = true
+
+getgenv().Walkspeed = 16
+
+getgenv().Crate = "basic_case"
+
+--Library
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wally2", true))()
+local Window = library:CreateWindow('Custom Duel Script')
+Window:Section('Reach')
+--UI Functions
+local ToggleKill = Window:Toggle("Kill Aura", {flag = "AutoKillAura"})
+local Slider0 = Window:Slider("Range",
+    {
+        precise = false,
+        default = 0,
+        min = 0,
+        max = 18,
+        flag = "KillRange"
+    },
+    function()
+        getgenv().Range = tonumber(Window.flags.KillRange)
+    end)
+local ToggleHit = Window:Toggle("Toggle Hitbox", {flag = "ToggleHitbox"})
+local Slider1 = Window:Slider("Hitbox",
+    {
+        precise = false,
+        default = 1,
+        min = 1,
+        max = 18,
+        flag = "HitboxReach"
+    },
+    function()
+        getgenv().HitBoxReach = tonumber(Window.flags.HitboxReach)
+    end)
+local Slider2 = Window:Slider("Transparency",
+    {
+        precise = true,
+        default = 0.9,
+        min = 0,
+        max = 1,
+        flag = "HitBoxTransparency"
+    },
+function()
+    getgenv().HitboxTransparency = tonumber(Window.flags.HitBoxTransparency)
+end)
+
+local ToggleLine = Window:Toggle("Toggle Reach", {flag = "ToggleLinear"})
+
+local Slider3 = Window:Slider("Reach",
+    {
+        precise = true,
+        default = -1.5,
+        min = -1.5,
+        max = -5,
+        flag = "LinearR"
+    },
+function()
+    getgenv().LinearReach = tonumber(Window.flags.LinearR)
+end)
+
+--Misc Section
+Window:Section('Misc')
+
+local ToggleLine = Window:Toggle("Auto Swing", {flag = "ToggleSword"})
+
+local AutoSpeed = Window:Toggle("WalkSpeed", {flag = "WalkToggle"})
+local Slider4 = Window:Slider("Walkspeed",
+    {
+        precise = false,
+        default = 16,
+        min = 0,
+        max = 150,
+        flag = "walkS"
+    },
+function()
+    getgenv().Walkspeed = Window.flags.walkS
+end)
+
+Window:Dropdown("Cases", {
+   location = _G.Case;
+   flag = "Case";
+   list = boxesTable
+},function(new)
+    print(new)
+    getgenv().Crate = new
+end)
+
+local OpenBox = Window:Toggle("Open Cases", {flag = "OpenBoxes"})
+local AutoAFk = Window:Toggle("Afk", {flag = "Afk"})
+
+--Functions
+
+function speed()
+    spawn( function()
+        while true do
+            wait()
+            if Window.flags.WalkToggle then
+                player.Character:WaitForChild("Humanoid").WalkSpeed = getgenv().Walkspeed
+            else
+                player.Character:WaitForChild("Humanoid").WalkSpeed = 16
+            end
+        end
+    end)
+end
+speed()
+function opencase()
+    spawn(
+        function()
+            while true do 
+                wait(.5)
+                if Window.flags.OpenBoxes then
+                    print(getgenv().Crate)
+                    local args = {
+                        [1] = getgenv().Crate
+                    }
+                    game:GetService("ReplicatedStorage").PurchaseCrate:InvokeServer(unpack(args))
+                    print("Case openned!")
+                end
+            end
+        end
+    )
+end
+opencase()
+function hitbox()
+    --pcall(function() 
+        spawn(
+            function()
+            while true do
+                wait()
+                if Window.flags.ToggleHitbox then
+                    pcall( function()
+                        for i,v in pairs(game.Players:GetChildren()) do
+                            if v ~= game.Players.LocalPlayer then
+                                local pChar = game.Workspace:FindFirstChild(v.Name)
+                                if pChar then
+                                    if pChar:FindFirstChild("Humanoid") then
+                                        if pChar:FindFirstChild("Humanoid").Health > 0 then
+                                            local RootP = pChar:FindFirstChild("HumanoidRootPart")
+                                            RootP.Size = Vector3.new(tonumber(Window.flags.HitboxReach), tonumber(Window.flags.HitboxReach), tonumber(Window.flags.HitboxReach))
+                                            RootP.Transparency = tonumber(Window.flags.HitBoxTransparency)
+                                            RootP.BrickColor = getgenv().ColorHitbox
+                                        else
+                                            local RootP = pChar:FindFirstChild("HumanoidRootPart")
+                                            RootP.Size = Vector3.new(1,1,1)
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end)
+                end
+            end
+        end
+        )
+    --end)
+end
+hitbox()
+function reachlinear()
+    spawn(
+        function()
+            while true do
+                wait()
+                if Window.flags.ToggleLinear then
+                    for i,v in pairs (game.Players.LocalPlayer.Character:GetChildren()) do
+                        if v:IsA('Tool') then
+                            v.GripPos=Vector3.new(0,0,getgenv().getgenv().LinearReach)
+                        end
+                    end
+                end
+            end
+        end
+    )
+end
+reachlinear()
+function autolunge()
+    spawn(
+        function()
+            while true do
+                wait()
+                if Window.flags.ToggleSword then
+                    for i,v in pairs (game.Players.LocalPlayer.Character:GetChildren()) do
+                        if v:IsA('Tool') then
+                            v:Activate()
+                        end
+                    end
+                end
+            end
+        end
+    )
+end
+autolunge()
+
+function autokill()
+    spawn(
+        function()
+            while true do
+                wait() 
+                if Window.flags.AutoKillAura then
+                    local p = game.Players:GetPlayers()
+                    for i = 2, #p do local v = p[i].Character
+                        if v and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and player:DistanceFromCharacter(v.HumanoidRootPart.Position) <= getgenv().Range then
+                            local tool = player.Character and player.Character:FindFirstChildOfClass("Tool")
+                            if tool and tool:FindFirstChild("Handle") then
+                                for i,v in next, v:GetChildren() do
+                                    if v:IsA("BasePart") then
+                                        firetouchinterest(tool.Handle,v,0)
+                                        firetouchinterest(tool.Handle,v,1)
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    )
+end
+autokill()
+function autoafk()
+    spawn( function()
+        while true do
+            wait()
+            if Window.flags.Afk then
+                if player.Character:WaitForChild("Gui").AFK.Visible == false then
+                    local args = {[1] = true}
+                    game:GetService("ReplicatedStorage").Events.AFK:FireServer(unpack(args))
+                end
+            end
+        end
+    end)
+end
+autoafk()

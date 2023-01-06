@@ -68,7 +68,7 @@ local Button = Tab:CreateButton({
 })
 
 local Button = Tab:CreateButton({
-	Name = "Castle",
+	Name = "Furia Castle",
 	Callback = function()
  Time = 3; target_pos = CFrame.new(-65, 377, -495) 
  TweenI = TweenInfo.new(Time, Enum.EasingStyle.Linear) 
@@ -79,7 +79,7 @@ local Button = Tab:CreateButton({
 })
 
 local Button = Tab:CreateButton({
-	Name = "Town",
+	Name = "The Town",
 	Callback = function()
  Time = 3; target_pos = CFrame.new(-450, 716, -318) 
  TweenI = TweenInfo.new(Time, Enum.EasingStyle.Linear) 
@@ -90,7 +90,7 @@ local Button = Tab:CreateButton({
 })
 
 local Button = Tab:CreateButton({
-	Name = "Bluehouse",
+	Name = "Blue House",
 	Callback = function()
  Time = 3; target_pos = CFrame.new(-523, 1071, -125) 
  TweenI = TweenInfo.new(Time, Enum.EasingStyle.Linear) 
@@ -101,7 +101,7 @@ local Button = Tab:CreateButton({
 })
 
 local Button = Tab:CreateButton({
-	Name = "Castle2",
+	Name = "Royal Castle",
 	Callback = function()
  Time = 3; target_pos = CFrame.new(-500, 1428, -520) 
  TweenI = TweenInfo.new(Time, Enum.EasingStyle.Linear) 
@@ -112,7 +112,7 @@ local Button = Tab:CreateButton({
 })
 
 local Button = Tab:CreateButton({
-	Name = "Watchtower",
+	Name = "Molten Castle",
 	Callback = function()
  Time = 3; target_pos = CFrame.new(-862, 1806, -726) 
  TweenI = TweenInfo.new(Time, Enum.EasingStyle.Linear) 

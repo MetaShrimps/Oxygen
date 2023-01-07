@@ -139,3 +139,27 @@ local Button = Tab:CreateButton({
  tween4.Completed:Wait() --you can remove it if you dont want to wait until tween teleport ends.
 	end,
 })
+
+local Tab = Window:CreateTab("Others") -- Title, Image
+local Section = Tab:CreateSection("Other Stuff")
+
+local Button = Tab:CreateButton({
+	Name = "Click Teleport",
+	Callback = function()
+		local plr = game:GetService("Players").LocalPlayer
+		local mouse = plr:GetMouse()
+		
+		local tool = Instance.new("Tool")
+		tool.RequiresHandle = false
+		tool.Name = "Click Teleport"
+		
+		tool.Activated:Connect(function()
+		local root = plr.Character.HumanoidRootPart
+		local pos = mouse.Hit.Position+Vector3.new(0,2.5,0)
+		local offset = pos-root.Position
+		root.CFrame = root.CFrame+offset
+		end)
+		
+		tool.Parent = plr.Backpack
+	end,
+})

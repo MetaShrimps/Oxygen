@@ -17,20 +17,7 @@ local Section = Tab:CreateSection("Main Stuff")
 local Button = Tab:CreateButton({
 	Name = "Enable Jumping",
 	Callback = function()
-Rayfield:Notify({
-    Title = "Patched",
-    Content = "Working on a fix",
-    Duration = 6.5,
-    Image = 4483362458,
-    Actions = { -- Notification Buttons
-        Ignore = {
-            Name = "Okay :(",
-            Callback = function()
-                print("The user tapped Okay!")
-            end
-		},
-	},
-})	
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
 end,
 })
 
@@ -50,8 +37,6 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CF
 game.Players.LocalPlayer.Character.Humanoid:ChangeState(7)
 	end,
 })
-
-local Paragraph = Tab:CreateParagraph({Title = "Retrive Ladder", Content = "Semi-working may have bugs."})
 
 local Tab = Window:CreateTab("Teleport")
 local Section = Tab:CreateSection("Teleportation Stuff")
@@ -119,5 +104,38 @@ local Button = Tab:CreateButton({
  local tween1 = game:GetService('TweenService'):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenI, {CFrame = target_pos}) 
  tween1:Play() --plays tween tp. 
  tween1.Completed:Wait() --you can remove it if you dont want to wait until tween teleport ends.
+	end,
+})
+
+local Button = Tab:CreateButton({
+	Name = "Village",
+	Callback = function()
+ Time = 3; target_pos = CFrame.new(-722, 2147, -564) 
+ TweenI = TweenInfo.new(Time, Enum.EasingStyle.Linear) 
+ local tween1 = game:GetService('TweenService'):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenI, {CFrame = target_pos}) 
+ tween1:Play() --plays tween tp. 
+ tween1.Completed:Wait() --you can remove it if you dont want to wait until tween teleport ends.
+	end,
+})
+
+local Button = Tab:CreateButton({
+	Name = "Molten Castle",
+	Callback = function()
+ Time = 3; target_pos = CFrame.new(-1507, 2498, -752) 
+ TweenI = TweenInfo.new(Time, Enum.EasingStyle.Linear) 
+ local tween3 = game:GetService('TweenService'):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenI, {CFrame = target_pos}) 
+ tween3:Play() --plays tween tp. 
+ tween3.Completed:Wait() --you can remove it if you dont want to wait until tween teleport ends.
+	end,
+})
+
+local Button = Tab:CreateButton({
+	Name = "Wizard Tower",
+	Callback = function()
+ Time = 3; target_pos = CFrame.new(-1405, 2859, -1327) 
+ TweenI = TweenInfo.new(Time, Enum.EasingStyle.Linear) 
+ local tween4 = game:GetService('TweenService'):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenI, {CFrame = target_pos}) 
+ tween4:Play() --plays tween tp. 
+ tween4.Completed:Wait() --you can remove it if you dont want to wait until tween teleport ends.
 	end,
 })

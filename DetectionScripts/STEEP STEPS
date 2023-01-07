@@ -1,3 +1,13 @@
+local char = game:GetService("Players").LocalPlayer.Character or game:GetService("Players").LocalPlayer.CharacterAdded:Wait()
+local hrp = char:WaitForChild("HumanoidRootPart")
+for _, v in next, getconnections(hrp.ChildAdded) do
+   if v.Function then
+       hookfunction(debug.getupvalue(v.Function, 2), function() end)
+   end
+end
+
+wait(1)
+
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
 
 local Window = Rayfield:CreateWindow({
@@ -17,20 +27,7 @@ local Section = Tab:CreateSection("Main Stuff")
 local Button = Tab:CreateButton({
 	Name = "Enable Jumping",
 	Callback = function()
-Rayfield:Notify({
-   Title = "Patched",
-   Content = "Stinky jandel patched this :(",
-   Duration = 6.5,
-   Image = 4483362458,
-   Actions = { -- Notification Buttons
-      Ignore = {
-         Name = "Okay :(",
-         Callback = function()
-         print("The user tapped Okay!")
-      end
-   },
-},
-})
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
 end,
 })
 
@@ -509,7 +506,6 @@ for J, H in pairs(g) do
 end
 
 wait(1)
-
 
 Rayfield:Notify({
    Title = "Information",

@@ -163,3 +163,10 @@ local Button = Tab:CreateButton({
 		tool.Parent = plr.Backpack
 	end,
 })
+
+local Button = Tab:CreateButton({
+	Name = "Infinite Yield",
+	Callback = function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+	end,
+})

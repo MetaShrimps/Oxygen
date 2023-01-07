@@ -17,7 +17,20 @@ local Section = Tab:CreateSection("Main Stuff")
 local Button = Tab:CreateButton({
 	Name = "Enable Jumping",
 	Callback = function()
-game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+Rayfield:Notify({
+   Title = "Patched",
+   Content = "Stinky jandel patched this :(",
+   Duration = 6.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay :(",
+         Callback = function()
+         print("The user tapped Okay!")
+      end
+   },
+},
+})
 end,
 })
 

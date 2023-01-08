@@ -125,7 +125,7 @@ local Button = Tab:CreateButton({
 })
 
 local Button = Tab:CreateButton({
-	Name = "Molten Castle",
+	Name = "Watch Tower",
 	Callback = function()
  Time = 3; target_pos = CFrame.new(-862, 1806, -726) 
  TweenI = TweenInfo.new(Time, Enum.EasingStyle.Linear) 

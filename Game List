@@ -1,1 +1,5 @@
-D
+    if game.PlaceId == 11606818992 then
+loadstring(game:HttpGet("https://raw.githubusercontent.com/MetaShrimps/Oxygen/main/DetectionScripts/STEEP%20STEPS"))()
+else
+loadstring(game:HttpGet("https://raw.githubusercontent.com/MetaShrimps/Oxygen/main/Notification"))()
+end

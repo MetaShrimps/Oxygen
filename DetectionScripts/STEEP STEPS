@@ -55,6 +55,17 @@ game.Lighting.Fog:Destroy()
 	end,
 })
 
+local Button = Tab:CreateButton({
+	Name = "Remove Ice Effects",
+	Callback = function()
+		for i,v in pairs(game.Workspace.Map.SpecialParts:GetChildren()) do
+			if v.Name == "ice" then
+			v.CustomPhysicalProperties = nil
+			end
+		 end
+end,
+})
+
 local Tab = Window:CreateTab("Teleport")
 local Section = Tab:CreateSection("Teleportation Stuff")
 

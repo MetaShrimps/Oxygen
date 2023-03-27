@@ -1,0 +1,4 @@
+getgenv().key = ""
+loadstring(game:HttpGetAsync("https://wumat.xyz/scripts/wumats-visual-hub.lua", true))()
+
+-- Get key https://wumat.xyz/getkey.html
